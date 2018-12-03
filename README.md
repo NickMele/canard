@@ -122,9 +122,9 @@ This generates two new sets of abilities in the abilities folder. Canard will ap
 loading the ability for the User model and then applying the abilities for each of the current user's roles.
 
 
-If there is no user (i.e. logged out), Canard creates a guest and looks for a guest ability to apply:
+If there is no user (i.e. logged out), Canard creates a anonymous and looks for a anonymous ability to apply:
 
-    $ rails g canard:ability guest can:create:user
+    $ rails g canard:ability anonymous can:create:user
 
 This would generate a signup ability for a user who was not logged in.
 
@@ -137,15 +137,15 @@ Scopes
 The :acts_as_user method will automatically define some named scopes for each role. For the User model
 above it will define the following scopes:
 
-`User.admins::`       return all the users with the admin role   
-`User.non_admins::`   return all the users without the admin role   
-`User.managers::`     return all the users with the manager role   
-`User.non_managers::` return all the users without the manager role   
+`User.admins::`       return all the users with the admin role
+`User.non_admins::`   return all the users without the admin role
+`User.managers::`     return all the users with the manager role
+`User.non_managers::` return all the users without the manager role
 
 In addition to the role specific scopes it also adds some general scopes:
 
-`User.with_any_role(roles)::`   return all the users with any of the specified roles   
-`User.with_all_roles(roles)::`  return only the users with all the specified roles   
+`User.with_any_role(roles)::`   return all the users with any of the specified roles
+`User.with_all_roles(roles)::`  return only the users with all the specified roles
 
 Installation
 ============
@@ -185,7 +185,7 @@ the Ability class for you so you don't need the boilerplate code from Ryan's exa
       include CanCan::Ability
 
       def initialize(user)
-        user ||= User.new # guest user (not logged in)
+        user ||= User.new # anonymous user (not logged in)
         if user.admin?
           can :manage, :all
         else

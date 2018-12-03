@@ -1,4 +1,4 @@
-Canard::Abilities.for(:guest) do
+Canard::Abilities.for(:anonymous) do
 
   can :read, Post
 

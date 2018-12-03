@@ -20,9 +20,9 @@
 # with each subsequent set of abilities building on or overriding the existing
 # abilities.
 #
-# If there is no object passed to the Ability.new method a guest ability is
-# created and Canard will look for a guests.rb amongst the ability definitions
-# and give the guest those abilities.
+# If there is no object passed to the Ability.new method a anonymous ability is
+# created and Canard will look for a anonymouss.rb amongst the ability definitions
+# and give the anonymous those abilities.
 class Ability
 
   include CanCan::Ability
@@ -43,9 +43,9 @@ class Ability
       user_class_name = String(@user.class.name)
       append_abilities user_class_name unless user_class_name.empty?
     else
-      # If user not set then lets create a guest
+      # If user not set then lets create a anonymous
       @user = Object.new
-      append_abilities :guest
+      append_abilities :anonymous
     end
 
     # If user has roles get those abilities

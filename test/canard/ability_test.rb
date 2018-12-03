@@ -120,7 +120,7 @@ describe Ability do
 
       subject { Ability.new }
 
-      it "applies the guest abilities" do
+      it "applies the anonymous abilities" do
         subject.can?(:index, Post)
         subject.can?(:show, Post)
 
